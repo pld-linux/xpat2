@@ -29,7 +29,7 @@ Xpat2 jest zestawem pasjansów dla X Window.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 %patch1 -p1
 
 %build

@@ -24,3 +24,12 @@
      if (!langdir)
  	langdir = "";		/* set to empty */
      if (!*langdir)
+@@ -203,7 +203,7 @@
+     sprintf(buff, "%s/%s", LIBDIR, langdir);
+ 
+     if (strlen(langdir) < 2)
+-	return langdir;		/* no idea how to change, keep it! */
++	return (langdir="");
+ 
+ #ifdef _POSIX_SOURCE
+     /* on posix-systems, we can check if the directory is accessible */
