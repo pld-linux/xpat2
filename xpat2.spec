@@ -68,14 +68,12 @@ install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Card,%{_pixmapsdir}}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Card
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
-gzip -9nf README doc/xpat2.ps
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz doc/xpat2.ps.gz
+%doc README doc/xpat2.ps
 %dir %{_datadir}/xpat
 %{_datadir}/xpat/???*
 %lang(de) %{_datadir}/xpat/de
