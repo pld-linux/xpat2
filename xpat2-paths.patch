@@ -1,0 +1,113 @@
+diff -Nur xpat2-1.07.orig/lib/french/XPat xpat2-1.07/lib/french/XPat
+--- xpat2-1.07.orig/lib/french/XPat	Tue Feb 14 08:31:48 1995
++++ xpat2-1.07/lib/french/XPat	Thu Oct  4 19:30:45 2001
+@@ -1,4 +1,4 @@
+-#include "../../app-defaults/XPat"
++#include "../XPat"
+ XPat*Dialog*Translations: #override \n\
+ <Key>o: Ok()\n\
+ <Key>n: Cancel()\n
+diff -Nur xpat2-1.07.orig/lib/german/XPat xpat2-1.07/lib/german/XPat
+--- xpat2-1.07.orig/lib/german/XPat	Mon Feb 13 18:57:06 1995
++++ xpat2-1.07/lib/german/XPat	Thu Oct  4 19:30:36 2001
+@@ -1,4 +1,4 @@
+-#include "../../app-defaults/XPat"
++#include "../XPat"
+ XPat*Dialog*Translations: #override \n\
+ <Key>j: Ok()\n\
+ <Key>n: Cancel()\n
+diff -Nur xpat2-1.07.orig/lib/italian/XPat xpat2-1.07/lib/italian/XPat
+--- xpat2-1.07.orig/lib/italian/XPat	Thu Jun 23 18:39:18 1994
++++ xpat2-1.07/lib/italian/XPat	Thu Oct  4 19:30:52 2001
+@@ -1,4 +1,4 @@
+-#include "../../app-defaults/XPat"
++#include "../XPat"
+ XPat*Dialog*Translations: #override \n\
+ <Key>s: Ok()\n\
+ <Key>n: Cancel()\n
+diff -Nur xpat2-1.07.orig/src/Imakefile xpat2-1.07/src/Imakefile
+--- xpat2-1.07.orig/src/Imakefile	Sun Nov  5 20:05:10 2000
++++ xpat2-1.07/src/Imakefile	Thu Oct  4 19:26:14 2001
+@@ -192,7 +192,7 @@
+ 
+ 
+ MYPROG		= xpat2
+-LANGUAGES	= italian german russian french de_DE fr_FR it_IT
++LANGUAGES	= de fr it ru
+ DEFINES		= $(LOAD_OPTION) $(HELP_OPTION) $(KIT_OPTION) $(ROUND_OPTION) \
+ 		  $(SOUND_OPTION) $(XPM_OPTION) $(GFX_OPTION) \
+ 		  -DSCOREFILE=\"$(SCOREFILE)\" -DLIBDIR=\"$(XPATLIBDIR)\"
+@@ -208,13 +208,12 @@
+ 	mkdirhier $(XPATLIBDIR)
+ 	chmod 755 $(XPATLIBDIR)
+ 	for f in $(LANGUAGES); do \
+-	  mkdirhier $(APPDEFSDIR)/$$f/app-defaults; \
+-	  cp ../lib/$$f/XPat $(APPDEFSDIR)/$$f/app-defaults; \
+-	  chmod 755 $(APPDEFSDIR)/$$f/app-defaults; \
+-	  chmod 644 $(APPDEFSDIR)/$$f/app-defaults/XPat; \
++	  mkdirhier $(APPDEFSDIR)/app-defaults/$$f; \
++	  cp ../lib/$$f/XPat $(APPDEFSDIR)/app-defaults/$$f; \
++	  chmod 755 $(APPDEFSDIR)/app-defaults/$$f; \
++	  chmod 644 $(APPDEFSDIR)/app-defaults/$$f/XPat; \
+ 	done 
+ 	(cd ../lib; tar cf - * | (cd $(XPATLIBDIR); tar xf -))
+-	chown -R root $(XPATLIBDIR)
+ 	chmod -R a+r $(XPATLIBDIR)
+ 	for f in $(LANGUAGES); do \
+ 	    chmod 755 $(XPATLIBDIR)/$$f; \
+diff -Nur xpat2-1.07.orig/src/Xpat.tmpl xpat2-1.07/src/Xpat.tmpl
+--- xpat2-1.07.orig/src/Xpat.tmpl	Sun Nov  5 21:03:10 2000
++++ xpat2-1.07/src/Xpat.tmpl	Thu Oct  4 19:06:05 2001
+@@ -161,13 +161,13 @@
+ XCOMM #########################################################################
+ 
+ XCOMM Root directory of xpat2 installation
+-XPATROOT	= /usr/games/lib/xpat
++XPATROOT	= /usr/X11R6/share/xpat
+ XCOMM XPATROOT	= /usr/local/lib/xpat
+ XCOMM XPATROOT	= /opt/XPat2
+ 
+-XPATLIBDIR	= $(XPATROOT)
+-APPDEFSDIR	= $(LIBDIR)
+-XPATMANDIR	= $(XPATROOT)/man/man6
++XPATLIBDIR	= $(DESTDIR)$(XPATROOT)
++APPDEFSDIR	= $(DESTDIR)$(LIBDIR)
++XPATMANDIR	= $(DESTDIR)/usr/X11R6/man/man6
+ 
+ XCOMM This is the name of the log-file, where solved games are stored:
+ SCOREFILE	= /var/games/xpat.log
+@@ -180,8 +180,8 @@
+ 
+ XCOMM Paths for the Qt interface
+ XCOMM QTDIR	= /usr/lib/qt1
+-QTDIR		= /usr/local/qt
+-QTINCDIR	= $(QTDIR)/include
++QTDIR		= /usr/X11R6
++QTINCDIR	= $(QTDIR)/include/qt
+ QTLIBDIR	= $(QTDIR)/lib
+ MOC		= $(QTDIR)/bin/moc
+ 
+diff -Nur xpat2-1.07.orig/src/messages.c xpat2-1.07/src/messages.c
+--- xpat2-1.07.orig/src/messages.c	Wed May  5 22:04:48 1999
++++ xpat2-1.07/src/messages.c	Thu Oct  4 19:27:45 2001
+@@ -214,15 +214,15 @@
+     iso_code[2] = '\0';
+     /* map the existing translations (iso3166) to well-known pathnames */
+     if (!strcmp(iso_code, "DE"))
+-	return langdir = "german";
++	return langdir = "de";
+     if (!strcmp(iso_code, "IT"))
+-	return langdir = "italian";
++	return langdir = "it";
+     if (!strcmp(iso_code, "FR"))
+-	return langdir = "french";
++	return langdir = "fr";
+     if (!strcmp(iso_code, ""))
+-	return langdir = "german";
++	return langdir = "de";
+     if (!strcmp(iso_code, "RU") || !strcmp(iso_code, "BY"))
+-	return langdir = "russian";
++	return langdir = "ru";
+ #ifdef _POSIX_SOURCE
+     /* directory wasn't readable, reset it */
+     return langdir = "";

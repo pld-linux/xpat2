@@ -1,0 +1,26 @@
+--- xpat2-1.07/src/XQt-main.cpp.orig	Sun Nov  5 21:12:35 2000
++++ xpat2-1.07/src/XQt-main.cpp	Thu Oct  4 20:07:24 2001
+@@ -61,7 +61,7 @@
+        (decks != -1 || Xslots != -1 || faceup != -1 || facedown != -1))
+ 	  fprintf(stderr, "warning: customization parameters are ignored\n");
+ 
+-
++    read_message_file("messages");
+     XQtXPat2Window * mw = new XQtXPat2Window(ruleset, seed);
+ 	mw->resize(800,600);
+     a.setMainWidget(mw);
+--- xpat2-1.07/src/messages.c.orig	Wed May  5 22:04:48 1999
++++ xpat2-1.07/src/messages.c	Thu Oct  4 20:14:43 2001
+@@ -183,7 +183,11 @@
+ 	return langdir;		/* directory was checked before */
+ 
+     /* first call, read environment */
+-    langdir = getenv("LANG");
++    langdir = getenv("LC_ALL");
++    if(!langdir)
++        langdir = getenv("LC_MESSAGES");
++    if(!langdir)
++	langdir = getenv("LANG");
+     if (!langdir)
+ 	langdir = "";		/* set to empty */
+     if (!*langdir)
