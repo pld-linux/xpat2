@@ -4,7 +4,7 @@ Summary(pl):	Zestaw pasjansów dla X Window System
 Summary(pt_BR):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
-Release:	9
+Release:	10
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
@@ -46,6 +46,9 @@ paciência que irão realmente "testar a sua paciência".
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+
+# moc files generated for old Qt - removing them causes regeneration for new
+rm -f src/{moc_*,mqmaskedit,mqhelpwin}.cpp
 
 %build
 cd lib
