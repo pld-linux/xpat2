@@ -1,0 +1,11 @@
+--- xpat2-1.07/src/Imakefile.orig	2003-09-07 12:48:17.000000000 +0200
++++ xpat2-1.07/src/Imakefile	2003-09-07 12:50:16.733391016 +0200
+@@ -100,7 +100,7 @@
+ 
+ #ifdef useXQt
+ KIT_OPTION	= -DuseXQt -I$(QTINCDIR)
+-KIT_LIBS	= -L$(QTLIBDIR) -lqt
++KIT_LIBS	= -L$(QTLIBDIR) -lqt-mt
+ KIT_OBJS	= XQtCards.o XQtCrdPile.o moc_XQtCP.o XQt-main.o \
+ 		  XQtTableau.o XQtWindow.o moc_XQtT.o moc_XQtW.o \
+ 		  XQtCrdsDlg.o moc_XQtC.o XQtMarkCrd.o XQtArrows.o \

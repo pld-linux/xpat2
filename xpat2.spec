@@ -4,7 +4,7 @@ Summary(pl):	Zestaw pasjansów dla X Window System
 Summary(pt_BR):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
-Release:	10
+Release:	11
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
@@ -14,6 +14,7 @@ Source2:	%{name}.png
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-qt-locales.patch
 Patch2:		%{name}-fixes.patch
+Patch3:		%{name}-qtmt.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	XFree86
 BuildRequires:	qt-devel
@@ -21,6 +22,7 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
@@ -45,6 +47,7 @@ paciência que irão realmente "testar a sua paciência".
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 # moc files generated for old Qt - removing them causes regeneration for new
 rm -f src/{moc_*,mqmaskedit,mqhelpwin}.cpp
@@ -61,7 +64,9 @@ rm -f src/mqmaskedit.cpp
 rm -f src/mqhelpwin.cpp
 cd ../src
 xmkmf
-%{__make} CCOPTIONS="%{rpmcflags}" CXXOPTIONS="%{rpmcflags}"
+%{__make} \
+	CCOPTIONS="%{rpmcflags}" \
+	CXXOPTIONS="%{rpmcflags}"
 
 cd ..
 %{__make} manual
@@ -71,7 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Card,%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/var/games
 
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+%{__make} install \
+	BINDIR=%{_bindir} \
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Card
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -93,10 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/xpat/fr
 %lang(it) %{_datadir}/xpat/it
 %lang(ru) %{_datadir}/xpat/ru
-%{_libdir}/X11/app-defaults/XPat
-%lang(de) %{_libdir}/X11/app-defaults/de/XPat
-%lang(fr) %{_libdir}/X11/app-defaults/fr/XPat
-%lang(it) %{_libdir}/X11/app-defaults/it/XPat
-%lang(ru) %{_libdir}/X11/app-defaults/ru/XPat
-%config(noreplace) %{_applnkdir}/Games/Card/xpat2.desktop
+%{appdefsdir}/XPat
+%lang(de) %{appdefsdir}/de/XPat
+%lang(fr) %{appdefsdir}/fr/XPat
+%lang(it) %{appdefsdir}/it/XPat
+%lang(ru) %{appdefsdir}/ru/XPat
+%{_applnkdir}/Games/Card/xpat2.desktop
 %{_pixmapsdir}/*
