@@ -8,6 +8,7 @@ Release:	10
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
+# Source0-md5:	fb2c845e3411ce39376da66c7aec2448
 Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-paths.patch
