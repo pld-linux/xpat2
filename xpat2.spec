@@ -4,7 +4,7 @@ Summary(pl):	Zestaw pasjansów dla X Window System
 Summary(pt_BR):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
-Release:	8
+Release:	9
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
