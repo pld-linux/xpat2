@@ -1,8 +1,14 @@
 [Desktop Entry]
-Name=xpat2
-Comment=X Patience
+Name=XPat2
+Type=Application
+Comment=X Patience (several types of solitaire)
+Comment[de]=X-Patience - diverse Solitaire-Kartenspiele
+Comment[es]=X Patience - varios juegos de cartas
+Comment[fr]=X Patience - divers jeux de solitaires
 Comment[pl]=X Pasjans
+Comment[pt_BR]=X Patience - vários jogos de cartas
+Comment[tr]=X Patience - fal oyunu
+Icon=xpat2.png
 Exec=xpat2
-Terminal=0
 Type=Application
 # vi: encoding=utf-8
