@@ -4,7 +4,9 @@ Name:		xpat2
 Version:	1.07
 Release:	1
 License:	distributable - most of it GPL
-Group:		Games
+Group:		X11/Applications/Games
+Group(de):	X11/Applikationen/Spiele
+Group(pl):	X11/Aplikacje/Gry
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
 Source1:	%{name}.desktop
 Source2:	%{name}.png
