@@ -4,7 +4,7 @@ Summary(pl):	Zestaw pasjansów dla X Window System
 Summary(pt_BR):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
-Release:	6
+Release:	7
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Group(de):	X11/Applikationen/Spiele
@@ -62,11 +62,11 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Card,%{_pixmapsdir}}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Card
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 gzip -9nf README doc/xpat2.ps
@@ -90,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_libdir}/X11/app-defaults/fr/XPat
 %lang(it) %{_libdir}/X11/app-defaults/it/XPat
 %lang(ru) %{_libdir}/X11/app-defaults/ru/XPat
-%config(noreplace) %{_applnkdir}/Games/xpat2.desktop
+%config(noreplace) %{_applnkdir}/Games/Card/xpat2.desktop
 %{_pixmapsdir}/*
