@@ -12,4 +12,5 @@ Comment[tr]=X Patience - fal oyunu
 Icon=xpat2.png
 Exec=xpat2
 Type=Application
+Encoding=UTF-8
 # vi: encoding=utf-8
