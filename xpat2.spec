@@ -1,8 +1,9 @@
-Summary:	A set of Solitaire type games for the X Window System.
+Summary:	A set of Solitaire type games for the X Window System
+Summary(pl):	Zestaw pasjansów dla X Window System
 Name:		xpat2
 Version:	1.07
 Release:	1
-Copyright:	distributable - most of it GPL
+License:	distributable - most of it GPL
 Group:		Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
 Source1:	%{name}.desktop
@@ -11,7 +12,9 @@ Patch0:		%{name}-qt-path.patch
 # Patch0:		%{name}-1.03-fsstnd.patch
 # Patch1:		%{name}.nomkdirhier.patch
 # Patch2:		%{name}-1.06-nochown.patch
-BuildPrereq:	tetex-dvips, tetex, tetex-latex, XFree86-devel, glibc-devel
+BuildRequires:	tetex-dvips
+BuildRequires:	tetex-latex
+BuildRequires:	XFree86-devel
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -23,15 +26,18 @@ Xpat2 is a generic patience or Solitaire game for the X Window System.
 Xpat2 can be used with different rules sets, so it can be used to play
 Spider, Klondike, and other card games.
 
+%description -l pl
+Xpat2 jest zestawem pasjansów dla X Window.
+
 %prep
 %setup -q
 %patch -p0
-#%patch1 -p0 -b .nobr
-#%patch2 -p1 -b .nochown
+#%patch1 -p0
+#%patch2 -p1
 
 %build
 export PATH=%{_bindir}/X11:$PATH
-%{__make}
+%{__make} CDEBUGFLAGS="%{rpmcflags}" CXXFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -56,6 +62,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/games/xpat
 %{_mandir}/*/*
 %attr(755,root,root) %{_bindir}/xpat2
-%{_prefix}/lib/X11/app-defaults/XPat
+%{_libdir}/X11/app-defaults/XPat
+%lang(de) %{_libdir}/X11/german/app-defaults/XPat
+%lang(fr) %{_libdir}/X11/french/app-defaults/XPat
+%lang(it) %{_libdir}/X11/italian/app-defaults/XPat
+%lang(ru) %{_libdir}/X11/russian/app-defaults/XPat
 %config(noreplace) %{_applnkdir}/Games/xpat2.desktop
 %{_pixmapsdir}/*
