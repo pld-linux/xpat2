@@ -20,17 +20,17 @@ BuildRequires:	XFree86-devel
 BuildRequires:	qt-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _prefix         /usr/X11R6
-%define         _mandir         %{_prefix}/man
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
 Xpat2 can be used with different rules sets, so it can be used to play
 Spider, Klondike, and other card games.
 
-%description -l es
 %description -l pl
-Xpat2 jest zestawem pasjansów dla X Window.
+Xpat2 jest zestawem pasjansów dla X Window. Mo¿e byæ u¿ywany z wieloma
+ró¿nymi zasadami; mo¿na graæ w Spidera, Klondike i inne gry karciane.
 
 %description -l pt_BR
 Em 1989, Dave Lemke, Heather Rose, Donald R. Woods e a Sun
