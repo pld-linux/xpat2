@@ -1,0 +1,43 @@
+--- src/Xpat.tmpl.old	Wed Sep 26 00:16:03 2001
++++ src/Xpat.tmpl	Wed Sep 26 00:17:25 2001
+@@ -180,8 +180,8 @@
+ 
+ XCOMM Paths for the Qt interface
+ XCOMM QTDIR	= /usr/lib/qt1
+-QTDIR		= /usr/local/qt
+-QTINCDIR	= $(QTDIR)/include
++QTDIR		= /usr/X11R6
++QTINCDIR	= $(QTDIR)/include/qt
+ QTLIBDIR	= $(QTDIR)/lib
+ MOC		= $(QTDIR)/bin/moc
+ 
+--- src/Xpat.tmpl~	Wed Sep 26 00:25:39 2001
++++ src/Xpat.tmpl	Wed Sep 26 00:32:40 2001
+@@ -161,13 +161,13 @@
+ XCOMM #########################################################################
+ 
+ XCOMM Root directory of xpat2 installation
+-XPATROOT	= /usr/games/lib/xpat
++XPATROOT	= /usr/X11R6/lib/games/xpat
+ XCOMM XPATROOT	= /usr/local/lib/xpat
+ XCOMM XPATROOT	= /opt/XPat2
+ 
+-XPATLIBDIR	= $(XPATROOT)
+-APPDEFSDIR	= $(LIBDIR)
+-XPATMANDIR	= $(XPATROOT)/man/man6
++XPATLIBDIR	= $(DESTDIR)$(XPATROOT)
++APPDEFSDIR	= $(DESTDIR)$(LIBDIR)
++XPATMANDIR	= $(DESTDIR)/usr/X11R6/man/man6
+ 
+ XCOMM This is the name of the log-file, where solved games are stored:
+ SCOREFILE	= /var/games/xpat.log
+--- src/Imakefile.3	Wed Sep 26 00:36:16 2001
++++ src/Imakefile	Wed Sep 26 00:36:39 2001
+@@ -214,7 +214,6 @@
+ 	  chmod 644 $(APPDEFSDIR)/$$f/app-defaults/XPat; \
+ 	done 
+ 	(cd ../lib; tar cf - * | (cd $(XPATLIBDIR); tar xf -))
+-	chown -R root $(XPATLIBDIR)
+ 	chmod -R a+r $(XPATLIBDIR)
+ 	for f in $(LANGUAGES); do \
+ 	    chmod 755 $(XPATLIBDIR)/$$f; \
