@@ -20,8 +20,6 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
