@@ -22,7 +22,7 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		appdefsdir	/usr/X11R6/lib/X11/app-defaults
+%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
@@ -100,10 +100,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/xpat/fr
 %lang(it) %{_datadir}/xpat/it
 %lang(ru) %{_datadir}/xpat/ru
-%{appdefsdir}/XPat
-%lang(de) %{appdefsdir}/de/XPat
-%lang(fr) %{appdefsdir}/fr/XPat
-%lang(it) %{appdefsdir}/it/XPat
-%lang(ru) %{appdefsdir}/ru/XPat
+%{_appdefsdir}/XPat
+%lang(de) %{_appdefsdir}/de/XPat
+%lang(fr) %{_appdefsdir}/fr/XPat
+%lang(it) %{_appdefsdir}/it/XPat
+%lang(ru) %{_appdefsdir}/ru/XPat
 %{_applnkdir}/Games/Card/xpat2.desktop
 %{_pixmapsdir}/*
