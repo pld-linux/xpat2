@@ -12,11 +12,11 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-qt-locales.patch
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-latex
 BuildRequires:	XFree86-devel
 BuildRequires:	XFree86
 BuildRequires:	qt-devel
+BuildRequires:	tetex-dvips
+BuildRequires:	tetex-latex
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -61,12 +61,15 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Card,%{_pixmapsdir}}
+install -d $RPM_BUILD_ROOT{%{_applnkdir}/Games/Card,%{_pixmapsdir}} \
+	$RPM_BUILD_ROOT/var/games
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games/Card
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
+
+:> $RPM_BUILD_ROOT/var/games/xpat.log
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -74,14 +77,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README doc/xpat2.ps
+%attr(2755,root,games) %{_bindir}/xpat2
+%attr(664,root,games) /var/games/xpat.log
+%{_mandir}/man6/*
 %dir %{_datadir}/xpat
 %{_datadir}/xpat/???*
 %lang(de) %{_datadir}/xpat/de
 %lang(fr) %{_datadir}/xpat/fr
 %lang(it) %{_datadir}/xpat/it
 %lang(ru) %{_datadir}/xpat/ru
-%{_mandir}/man6/*
-%attr(755,root,root) %{_bindir}/xpat2
 %{_libdir}/X11/app-defaults/XPat
 %lang(de) %{_libdir}/X11/app-defaults/de/XPat
 %lang(fr) %{_libdir}/X11/app-defaults/fr/XPat
