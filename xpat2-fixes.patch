@@ -1,0 +1,24 @@
+diff -ru xpat2-1.07.orig/src/XQtCards.cpp xpat2-1.07/src/XQtCards.cpp
+--- xpat2-1.07.orig/src/XQtCards.cpp	2002-07-27 17:10:43.000000000 -0700
++++ xpat2-1.07/src/XQtCards.cpp	2002-07-27 17:57:45.000000000 -0700
+@@ -257,7 +257,7 @@
+     return cb;
+ }
+ 
+-void XQtCards::set_cardback(int num = 0) {
++void XQtCards::set_cardback(int num) {
+     delete pm_cardback;
+     if (num > numcardbacks || num < 1)
+ 	num = -1;
+diff -ru xpat2-1.07.orig/src/XQtCrdPile.cpp xpat2-1.07/src/XQtCrdPile.cpp
+--- xpat2-1.07.orig/src/XQtCrdPile.cpp	2002-07-27 17:10:43.000000000 -0700
++++ xpat2-1.07/src/XQtCrdPile.cpp	2002-07-27 17:57:45.000000000 -0700
+@@ -115,7 +115,7 @@
+     setGeometry(p->x, p->y, p->w, p->h);	// take values from geo.pg[]
+ }
+ 
+-XQtCardPile::XQtCardPile(int pilenr, XQtTableau *parent, const char *name=0)
++XQtCardPile::XQtCardPile(int pilenr, XQtTableau *parent, const char *name)
+   : QWidget(parent, name) {
+     pileno = pilenr;
+     tabl = parent;
