@@ -2,7 +2,7 @@ Summary:	A set of Solitaire type games for the X Window System
 Summary(pl):	Zestaw pasjansów dla X Window System
 Name:		xpat2
 Version:	1.07
-Release:	1
+Release:	6
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Group(de):	X11/Applikationen/Spiele
