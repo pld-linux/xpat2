@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=xpat2
+Comment=X Patience
+Comment[pl]=X Pasjans
+Exec=xpat2
+Terminal=0
+Type=Application
