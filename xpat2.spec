@@ -12,6 +12,7 @@ Source1:	%{name}.desktop
 Source2:	%{name}.png
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-qt-locales.patch
+Patch2:		%{name}-fixes.patch
 BuildRequires:	XFree86-devel
 BuildRequires:	XFree86
 BuildRequires:	qt-devel
@@ -44,6 +45,7 @@ paciência que irão realmente "testar a sua paciência".
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cd lib
@@ -52,6 +54,9 @@ mv -f french fr
 mv -f italian it
 mv -f russian ru
 rm -f de_DE fr_FR it_IT
+rm -f src/moc*
+rm -f src/mqmaskedit.cpp
+rm -f src/mqhelpwin.cpp
 cd ../src
 xmkmf
 %{__make} CCOPTIONS="%{rpmcflags}" CXXOPTIONS="%{rpmcflags}"
