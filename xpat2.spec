@@ -6,6 +6,7 @@ Copyright:	distributable - most of it GPL
 Group:		Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
 Source1:	%{name}.desktop
+Source2:	%{name}.png
 Patch0:		%{name}-qt-path.patch
 # Patch0:		%{name}-1.03-fsstnd.patch
 # Patch1:		%{name}.nomkdirhier.patch
@@ -34,15 +35,17 @@ export PATH=%{_bindir}/X11:$PATH
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/X11/applnk/Games
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Games
 install -d $RPM_BUILD_ROOT%{_bindir}
 install -d $RPM_BUILD_ROOT%{_libdir}/games/xpat
 install -d $RPM_BUILD_ROOT%{_mandir}/man6
 install -d $RPM_BUILD_ROOT%{_prefix}/X11R6/lib/X11/{italian,german,russian,french}/app-defaults
+install -d $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %{__make} DESTDIR=$RPM_BUILD_ROOT install
 
-install %SOURCE1 $RPM_BUILD_ROOT%{_sysconfdir}/X11/applnk/Games/xpat2.desktop
+install %{SOURCE1} $RPM_BUILD_ROOT%{_applnkdir}/Games
+install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -54,4 +57,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/*/*
 %attr(755,root,root) %{_bindir}/xpat2
 %{_prefix}/lib/X11/app-defaults/XPat
-%config(noreplace) %{_sysconfdir}/X11/applnk/Games/xpat2.desktop
+%config(noreplace) %{_applnkdir}/Games/xpat2.desktop
+%{_pixmapsdir}/*
