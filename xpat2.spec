@@ -41,7 +41,7 @@ mv -f russian ru
 rm -f de_DE fr_FR it_IT
 cd ../src
 xmkmf
-%{__make} CDEBUGFLAGS="%{rpmcflags}" CXXDEBUGFLAGS="%{rpmcflags}"
+%{__make} CCOPTIONS="%{rpmcflags}" CXXOPTIONS="%{rpmcflags}"
 
 cd ..
 %{__make} manual
