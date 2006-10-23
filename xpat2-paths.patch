@@ -37,18 +37,8 @@ diff -Nur xpat2-1.07.orig/src/Imakefile xpat2-1.07/src/Imakefile
  DEFINES		= $(LOAD_OPTION) $(HELP_OPTION) $(KIT_OPTION) $(ROUND_OPTION) \
  		  $(SOUND_OPTION) $(XPM_OPTION) $(GFX_OPTION) \
  		  -DSCOREFILE=\"$(SCOREFILE)\" -DLIBDIR=\"$(XPATLIBDIR)\"
-@@ -208,13 +208,12 @@
- 	mkdirhier $(XPATLIBDIR)
- 	chmod 755 $(XPATLIBDIR)
- 	for f in $(LANGUAGES); do \
--	  mkdirhier $(APPDEFSDIR)/$$f/app-defaults; \
--	  cp ../lib/$$f/XPat $(APPDEFSDIR)/$$f/app-defaults; \
--	  chmod 755 $(APPDEFSDIR)/$$f/app-defaults; \
--	  chmod 644 $(APPDEFSDIR)/$$f/app-defaults/XPat; \
-+	  mkdirhier $(APPDEFSDIR)/app-defaults/$$f; \
-+	  cp ../lib/$$f/XPat $(APPDEFSDIR)/app-defaults/$$f; \
-+	  chmod 755 $(APPDEFSDIR)/app-defaults/$$f; \
-+	  chmod 644 $(APPDEFSDIR)/app-defaults/$$f/XPat; \
+@@ -214,7 +214,6 @@
+ 	  chmod 644 $(APPDEFSDIR)/$$f/app-defaults/XPat; \
  	done 
  	(cd ../lib; tar cf - * | (cd $(XPATLIBDIR); tar xf -))
 -	chown -R root $(XPATLIBDIR)
@@ -71,7 +61,7 @@ diff -Nur xpat2-1.07.orig/src/Xpat.tmpl xpat2-1.07/src/Xpat.tmpl
 -APPDEFSDIR	= $(LIBDIR)
 -XPATMANDIR	= $(XPATROOT)/man/man6
 +XPATLIBDIR	= $(DESTDIR)$(XPATROOT)
-+APPDEFSDIR	= $(DESTDIR)/usr/X11R6/lib/X11
++APPDEFSDIR	= $(DESTDIR)/usr/share/X11
 +XPATMANDIR	= $(DESTDIR)/usr/share/man/man6
  
  XCOMM This is the name of the log-file, where solved games are stored:
