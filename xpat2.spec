@@ -4,7 +4,7 @@ Summary(pl):	Zestaw pasjansów dla X Window System
 Summary(pt_BR):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
-Release:	12
+Release:	13
 License:	distributable - most of it GPL
 Group:		X11/Applications/Games
 Source0:	ftp://metalab.unc.edu/pub/Linux/games/solitaires/%{name}-%{version}-src.tar.gz
@@ -15,14 +15,15 @@ Patch0:		%{name}-paths.patch
 Patch1:		%{name}-qt-locales.patch
 Patch2:		%{name}-fixes.patch
 Patch3:		%{name}-qtmt.patch
-BuildRequires:	XFree86-devel
-BuildRequires:	XFree86
+Patch4:		%{name}-c++.patch
 BuildRequires:	qt-devel
 BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
+BuildRequires:	xorg-cf-files
+BuildRequires:	xorg-lib-libXpm-devel
+BuildRequires:	xorg-util-imake
+Requires:	xorg-lib-libXt >= 1.0.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_appdefsdir	/usr/X11R6/lib/X11/app-defaults
 
 %description
 Xpat2 is a generic patience or Solitaire game for the X Window System.
@@ -48,11 +49,11 @@ paciência que irão realmente "testar a sua paciência".
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 # moc files generated for old Qt - removing them causes regeneration for new
 rm -f src/{moc_*,mqmaskedit,mqhelpwin}.cpp
 
-%build
 cd lib
 mv -f german de
 mv -f french fr
@@ -62,11 +63,15 @@ rm -f de_DE fr_FR it_IT
 rm -f src/moc*
 rm -f src/mqmaskedit.cpp
 rm -f src/mqhelpwin.cpp
-cd ../src
+
+%build
+cd src
 xmkmf
 %{__make} \
+	CC="%{__cc}" \
+	CXX="%{__cxx}" \
 	CCOPTIONS="%{rpmcflags}" \
-	CXXOPTIONS="%{rpmcflags}"
+	CXXOPTIONS="%{rpmcxxflags}"
 
 cd ..
 %{__make} manual
@@ -77,8 +82,9 @@ install -d $RPM_BUILD_ROOT{%{_desktopdir},%{_pixmapsdir}} \
 	$RPM_BUILD_ROOT/var/games
 
 %{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
 	BINDIR=%{_bindir} \
-	DESTDIR=$RPM_BUILD_ROOT
+	XAPPLOADDIR=%{_datadir}/X11/app-defaults
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_desktopdir}
 install %{SOURCE2} $RPM_BUILD_ROOT%{_pixmapsdir}
@@ -100,10 +106,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/xpat/fr
 %lang(it) %{_datadir}/xpat/it
 %lang(ru) %{_datadir}/xpat/ru
-%{_appdefsdir}/XPat
-%lang(de) %{_appdefsdir}/de/XPat
-%lang(fr) %{_appdefsdir}/fr/XPat
-%lang(it) %{_appdefsdir}/it/XPat
-%lang(ru) %{_appdefsdir}/ru/XPat
+%{_datadir}/X11/app-defaults/XPat
+%lang(de) %{_datadir}/X11/de/app-defaults/XPat
+%lang(fr) %{_datadir}/X11/fr/app-defaults/XPat
+%lang(it) %{_datadir}/X11/it/app-defaults/XPat
+%lang(ru) %{_datadir}/X11/ru/app-defaults/XPat
 %{_desktopdir}/*
 %{_pixmapsdir}/*
