@@ -111,5 +111,5 @@ rm -rf $RPM_BUILD_ROOT
 %lang(fr) %{_datadir}/X11/fr/app-defaults/XPat
 %lang(it) %{_datadir}/X11/it/app-defaults/XPat
 %lang(ru) %{_datadir}/X11/ru/app-defaults/XPat
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_pixmapsdir}/*
