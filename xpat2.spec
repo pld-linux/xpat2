@@ -1,7 +1,7 @@
 Summary:	A set of Solitaire type games for the X Window System
-Summary(es):	X Patience - varios juegos de cartas
-Summary(pl):	Zestaw pasjansów dla X Window System
-Summary(pt_BR):	X Patience - vários jogos de cartas
+Summary(es.UTF-8):   X Patience - varios juegos de cartas
+Summary(pl.UTF-8):   Zestaw pasjansÃ³w dla X Window System
+Summary(pt_BR.UTF-8):   X Patience - vÃ¡rios jogos de cartas
 Name:		xpat2
 Version:	1.07
 Release:	13
@@ -30,18 +30,18 @@ Xpat2 is a generic patience or Solitaire game for the X Window System.
 Xpat2 can be used with different rules sets, so it can be used to play
 Spider, Klondike, and other card games.
 
-%description -l pl
-Xpat2 jest zestawem pasjansów dla X Window. Mo¿e byæ u¿ywany z wieloma
-ró¿nymi zasadami; mo¿na graæ w Spidera, Klondike i inne gry karciane.
+%description -l pl.UTF-8
+Xpat2 jest zestawem pasjansÃ³w dla X Window. MoÅ¼e byÄ‡ uÅ¼ywany z wieloma
+rÃ³Å¼nymi zasadami; moÅ¼na graÄ‡ w Spidera, Klondike i inne gry karciane.
 
-%description -l pt_BR
+%description -l pt_BR.UTF-8
 Em 1989, Dave Lemke, Heather Rose, Donald R. Woods e a Sun
-Microsystems, Inc., criaram o jogo de paciência xsol (também conhecido
-como klondike no DOS) e as regras de alguns outros jogos de paciência.
-As características principais são variáveis com conjuntos de regras e
-diferentes conjuntos de cartas para diferentes resoluções de
-monitores. xpat2 (X Patience) é uma coleção destes variados jogos de
-paciência que irão realmente "testar a sua paciência".
+Microsystems, Inc., criaram o jogo de paciÃªncia xsol (tambÃ©m conhecido
+como klondike no DOS) e as regras de alguns outros jogos de paciÃªncia.
+As caracterÃ­sticas principais sÃ£o variÃ¡veis com conjuntos de regras e
+diferentes conjuntos de cartas para diferentes resoluÃ§Ãµes de
+monitores. xpat2 (X Patience) Ã© uma coleÃ§Ã£o destes variados jogos de
+paciÃªncia que irÃ£o realmente "testar a sua paciÃªncia".
 
 %prep
 %setup -q
