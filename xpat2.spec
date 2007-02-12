@@ -1,7 +1,7 @@
 Summary:	A set of Solitaire type games for the X Window System
-Summary(es.UTF-8):   X Patience - varios juegos de cartas
-Summary(pl.UTF-8):   Zestaw pasjansów dla X Window System
-Summary(pt_BR.UTF-8):   X Patience - vários jogos de cartas
+Summary(es.UTF-8):	X Patience - varios juegos de cartas
+Summary(pl.UTF-8):	Zestaw pasjansów dla X Window System
+Summary(pt_BR.UTF-8):	X Patience - vários jogos de cartas
 Name:		xpat2
 Version:	1.07
 Release:	13
